@@ -19,12 +19,12 @@ const Input = styled.TextInput`
   border-radius:10px;
   padding:10px;
 `;
-const CalcButton = styled.Button`
-  margin-top:10px;
+const CalcBtn = styled.Button`
+  
 `;
 const ResultArea = styled.View`
   margin-top:30px;
-  background-color:#EEE;
+  background-color:#DDD;
   padding:20px;
   justify-content:center;
   align-items:center;
@@ -48,8 +48,8 @@ export default () => {
   const calc = () => {
     let nBill = parseFloat(bill);
 
-    if(nBill) {
-      setTip( (10/100) * nBill );
+    if (nBill) {
+      setTip((10 / 100) * nBill);
     } else {
       alert("Digite o valor da conta!");
     }
@@ -59,25 +59,29 @@ export default () => {
     <Page>
       <HeaderText>Calculadora de Gorjeta</HeaderText>
       <Input
-        placeholder="Valor da conta"
-        placeholderTextColor='#000'
+        placeholder="Digite o valor da conta"
+        placeholderTextColor='#CCC'
         keyboardType="numeric"
         value={bill}
-        onChangeText={n=>setBill(n)}
+        onChangeText={n => setBill(n)}
       />
-      <CalcButton title="CALCULAR" onPress={calc} />
+      <CalcBtn
+        title="CALCULAR"
+        onPress={calc}
+        color="#00B0FF"
+      />
       {tip > 0 &&
         <ResultArea>
           <ResultItemTitle>Valor da Conta</ResultItemTitle>
           <ResultItem>R$ {parseFloat(bill).toFixed(2)}</ResultItem>
 
-          <ResultItemTitle>Valor da Gorjeta</ResultItemTitle>
+          <ResultItemTitle>Gorjeta (10%)</ResultItemTitle>
           <ResultItem>R$ {tip.toFixed(2)}</ResultItem>
 
           <ResultItemTitle>Valor Total</ResultItemTitle>
-          <ResultItem>R$ {parseFloat(bill) + tip.toFixed(2)}</ResultItem>
+          <ResultItem>R$ {(parseFloat(bill) + tip).toFixed(2)}</ResultItem>
         </ResultArea>
-      }      
+      }
     </Page>
   );
 }
