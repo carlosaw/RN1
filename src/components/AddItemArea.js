@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components/native';
+import { v4 as uuidv4 } from 'uuid';
 
 const AdditemArea = styled.View`
     background-color:#999;
@@ -13,11 +14,23 @@ const AddItemInput = styled.TextInput`
     padding:10px;
 `;
 
-export default () => {
+export default (props) => {
     const [item, setItem] = useState('');
 
     const handleSubmit = () => {
-        alert('ITEM: ' + item);
+        if (item.trim() == '') {
+            alert("Digite uma tarefa");
+        } else {
+            let items = [...props.items];
+            items.push({
+                id: uuidv4(),
+                task: item.trim(),
+                done: false
+            });
+            props.setItems(items);
+        }
+
+        setItem('');
     }
 
     return (
