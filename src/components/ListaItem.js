@@ -3,7 +3,7 @@ import styled from 'styled-components/native';
 
 const Item = styled.TouchableOpacity`
   padding:10px;
-  background-color:#CCC;
+  background-color:#EEE;
   flex-direction:row;
 `;
 const ItemText = styled.Text`
@@ -14,7 +14,7 @@ const ItemCheck = styled.View`
   width:20px;
   height:20px;
   border-radius:10px;
-  border:3px solid #FFF;
+  border:3px solid #999;
 `;
 
 export default (props) => {
