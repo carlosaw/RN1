@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import styled from 'styled-components/native';
-import { v4 as uuidv4 } from 'uuid';
 
 const AdditemArea = styled.View`
     background-color:#999;
@@ -19,18 +18,11 @@ export default (props) => {
 
     const handleSubmit = () => {
         if (item.trim() == '') {
-            alert("Digite uma tarefa");
+            alert('Digite uma tarefa');
         } else {
-            let items = [...props.items];
-            items.push({
-                id: uuidv4(),
-                task: item.trim(),
-                done: false
-            });
-            props.setItems(items);
+            props.onAdd(item);
+            setItem('');
         }
-
-        setItem('');
     }
 
     return (
