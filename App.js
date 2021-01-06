@@ -1,61 +1,33 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { StatusBar } from 'react-native';
 import styled from 'styled-components/native';
-import lista from './src/lista';
-import ListaItem from './src/components/ListaItem';
-import AddItemArea from './src/components/AddItemArea';
-import { v4 as uuidv4 } from 'uuid';
-import { SwipeListView } from 'react-native-swipe-list-view';
-import ListaItemSwipe from './src/components/ListaItemSwipe';
 
 const Page = styled.SafeAreaView`
-    flex:1;    
+    flex:1;
+    justify-content:center;
+    align-items:center;
+    background-color:#0000FF;    
 `;
-const Listagem = styled.FlatList`
-  flex:1;
-`;
+const Botao = styled.Button``;
 
 export default () => {
-  const [items, setItems] = useState(lista);
-
-  const addNewItem = (txt) => {
-    let newItems = [...items];
-    newItems.push({
-      id: uuidv4(),
-      task: txt,
-      done: false
-    });
-    setItems(newItems);
-  }
-
-  const toggleDone = (index) => {
-    let newItems = [...items];
-    newItems[index].done = !newItems[index].done;
-    setItems(newItems);
-  }
-
-  const deleteItem = (index) => {
-    let newItems = [...items];
-    newItems = newItems.filter((it, i) => {
-      if (i != index) {
-        return true;
-      } else {
-        return false;
-      }
-    });
-    setItems(newItems);
-  }
+  const [statusHide, setStatusHide] = useState(false);
 
   return (
     <Page>
-      <AddItemArea onAdd={addNewItem} />
-      <SwipeListView
-        data={items}
-        renderItem={({ item, index }) => <ListaItem onPress={() => toggleDone(index)} data={item} />}
-        renderHiddenItem={({ item, index }) => <ListaItemSwipe onDelete={() => deleteItem(index)} />}
-        leftOpenValue={50}
-        disableLeftSwipe={true}
-        keyExtractor={(item) => item.id}
+
+      <StatusBar
+        barStyle="dark-content"
+        backgroundColor="#EEE"
+        hidden={statusHide}
+        animated={true}
       />
+
+      <Botao
+        title="Toggle StatusBar"
+        onPress={() => setStatusHide(!statusHide)}
+      />
+
     </Page>
   );
 }
