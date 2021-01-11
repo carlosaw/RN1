@@ -1,8 +1,5 @@
-import React from 'react';
-import { View, Text } from  'react-native';
+import { createAppContainer } from  'react-navigation';
+import MainNavigator from './src/navigators/MainNavigator.js'
 
-export default () => {
-  return (
-    <View><Text>Olá. Bom dia!</Text></View>
-  );
-}
+export default createAppContainer (MainNavigator);
+  
