@@ -1,47 +1,16 @@
-import { createStackNavigator} from 'react-navigation-stack';
-import Welcome from '../screens/Welcome';
-import Login from '../screens/Login';
-import { Right } from 'native-base';
+import { createBottomTabNavigator } from 'react-navigation-tabs';
 
-const MainNavigator = createStackNavigator({
-    Welcome:{
-        screen:Welcome
+import HomeDrawer from '../navigators/HomeDrawer';
+import Config from '../screens/Config';
+
+const MainNavigator = createBottomTabNavigator({
+    Home:{
+        screen:HomeDrawer
     },
-    Login:{
-        screen:Login
+    Config:{
+        screen:Config
     }
-}, {
-    defaultNavigationOptions:{
-        headerTitleAlign: 'center',
-        headerLeftContainerStyle:{
-            marginLeft: 20
-        },
-        headerRightContainerStyle:{
-            marginRight: 20
-        },        
-        headerStyle:{
-            backgroundColor:'#FFF',
-            height: 100
-        }
-        /*,
-        headerTitleStyle:{
-            //color:'#FFFFFF',
-            fontWeight:'bold'
-        },
-        headerTintColor:'#FFFFFF',
-        //headerBackTitle:'Voltar'
-        headerTitleContainerStyle:{
-            backgroundColor:'#DDD'
-        },
-        headerLeftContainerStyle:{
-            backgroundColor:'#999'
-        },
-        headerRightContainerStyle:{
-            backgroundColor:'#000000'
-        },
-        headerTitleAlign: 'center'
-        */  
-    }
+
 });
 
 export default MainNavigator;
