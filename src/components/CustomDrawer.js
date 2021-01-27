@@ -25,7 +25,7 @@ export default (props) => {
         <Scroll>
             <Area>
                 <DrawerLogo
-                    source={('../images/trash.png')}
+                    source={{uri:('../images/trash.png')}}
                 />
                 <DrawerNavigatorItems
                     {...props}

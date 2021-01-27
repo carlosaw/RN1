@@ -1,45 +1,52 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components/native';
+import { StackActions, NavigationActions } from 'react-navigation';
 
 const Container = styled.SafeAreaView`
     flex: 1;
-    background-color: #FFF;
 `;
 const Texto = styled.Text`
     font-size: 15px;
 `;
-
 const Botao = styled.Button``;
 
+const Input = styled.TextInput`
+    border: 1px solid #CCC;
+    font-size: 12px;
+    padding: 10px;
+    height: 50px;
+    margin: 20px
+`;
+
 const Page = (props) => {
+
+    const handleLogin = () => {
+        const resetAction = StackActions.reset({
+            index:0,
+            actions:[
+                NavigationActions.navigate({routeName:'Home'})
+            ]
+        });
+        props.navigation.dispatch(resetAction);
+    }
+
     return (
         <Container>
-            <Texto>Página HOME</Texto>
+            <Texto>Página LOGIN</Texto>
 
-            <Botao title="Fulano de Tal" onPress={()=>props.navigation.navigate('Perfil')} />
+            <Input value={props.name} onChangeText={e=>props.setName(e)} />
 
-            <Botao title="Abrir Drawer" onPress={()=>props.navigation.openDrawer()} />
             <Texto>NOME: {props.name}</Texto>
             <Texto>IDADE: {props.idade}</Texto>
+
+            <Botao title="Fazer Login" onPress={handleLogin} />
         </Container>
     );
 }
-
 Page.navigationOptions = () => {
-    const DrawerImage = styled.Image`
-        width:35px;
-        height:35px;
-    `;
-
     return {
-        title:'Início',        
-        drawerIcon:({focused, tintColor})=>(
-            <DrawerImage source={focused?
-                require('../images/home_active.png'):
-                require('../images/home_black.jpg')}
-            />
-        )
+        title:'Login'
     };
 }
 
